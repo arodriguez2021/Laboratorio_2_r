@@ -91,8 +91,8 @@ ggplot(flight_airports, aes(x=lon, y=lat, color=delay, size=delay)) +
 ```{r}
 #2.8
 flights %>%
-  inner_join(planes, suffix=c("_flights", "_planes"))
-
+  inner_join(planes, suffix=c("_flights", "_planes")) %>%
+  transmute (tailnum, manufacturer, pi=(dep_delay/arr_delay)/air_time)
 
 ```
 
