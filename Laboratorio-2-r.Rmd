@@ -72,4 +72,28 @@ ggplot(precip_delay, aes(x=precip, y=delay)) +
   geom_point()
 
 ```
+```{r}
+#2.6
+flight_airports <- flights %>%
+  filter(year == 2013) %>%
+  filter(month == 5) %>%
+  filter(day == 10) %>%
+  group_by(dest) %>%
+  summarise(delay=mean(arr_delay), na.arm=TRUE) %>%
+  inner_join(airports, by=c("dest" = "faa"))
+
+#2.7
+ggplot(flight_airports, aes(x=lon, y=lat, color=delay, size=delay)) +
+  geom_point()
+
+
+```
+```{r}
+#2.8
+flights %>%
+  inner_join(planes, suffix=c("_flights", "_planes"))
+
+
+```
+
 
